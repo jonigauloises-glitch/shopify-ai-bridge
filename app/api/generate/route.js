@@ -3,7 +3,7 @@ import OpenAI from "openai";
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// --- CORS helpers ---
+// --- CORS ---
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "POST,OPTIONS",
@@ -11,9 +11,8 @@ const CORS_HEADERS = {
 };
 const json = (data, status = 200) =>
   new Response(JSON.stringify(data), { status, headers: { "Content-Type": "application/json", ...CORS_HEADERS } });
-
-export async function OPTIONS() { return new Response(null, { status: 204, headers: CORS_HEADERS }); }
-// ---------------------
+export async function OPTIONS(){ return new Response(null, { status: 204, headers: CORS_HEADERS }); }
+// -----------
 
 export async function POST(req) {
   try {
